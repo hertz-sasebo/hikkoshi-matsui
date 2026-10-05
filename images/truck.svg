@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300">
+<ellipse cx="260" cy="272" rx="240" ry="14" fill="#14305e" opacity=".12"/>
+<g stroke="#14305e" stroke-width="4" stroke-linejoin="round">
+<rect x="20" y="40" width="340" height="200" rx="8" fill="#fff"/>
+<path d="M360,110 L440,110 Q470,112 482,150 L496,190 L496,240 L360,240Z" fill="#fff"/>
+<path d="M372,122 L432,122 Q452,124 462,160 L462,172 L372,172Z" fill="#cfe0ef"/>
+<rect x="20" y="226" width="476" height="18" fill="#14305e"/>
+<circle cx="110" cy="248" r="26" fill="#333"/><circle cx="110" cy="248" r="10" fill="#ccc"/>
+<circle cx="420" cy="248" r="26" fill="#333"/><circle cx="420" cy="248" r="10" fill="#ccc"/>
+</g>
+<rect x="20" y="196" width="340" height="12" fill="#f6c90e"/>
+<g font-family="'Zen Maru Gothic',sans-serif" font-weight="700" fill="#14305e">
+<text x="120" y="120" font-size="26">引越しの</text>
+<text x="120" y="170" font-size="54">マツイ</text>
+</g>
+<path d="M118,182 Q200,170 290,180" stroke="#f6c90e" stroke-width="8" fill="none" stroke-linecap="round"/>
+<svg x="38" y="90" width="76" height="76" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="47" fill="#fff6d1" stroke="#14305e" stroke-width="4"/>
+<g stroke="#14305e" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M24,46 L20,18 L44,32Z" fill="#fff"/><path d="M76,46 L80,18 L56,32Z" fill="#fff"/>
+<ellipse cx="50" cy="58" rx="30" ry="25" fill="#fff"/>
+<path d="M22,46 Q24,22 50,22 Q76,22 78,46Z" fill="#14305e"/>
+<path d="M18,47 Q50,40 84,49 Q78,54 50,52 Q30,52 18,47Z" fill="#14305e"/>
+<ellipse cx="40" cy="62" rx="3" ry="4" fill="#14305e"/><ellipse cx="60" cy="62" rx="3" ry="4" fill="#14305e"/>
+<path d="M45,71 Q50,75 55,71" fill="none" stroke-width="2.5"/>
+</g>
+<circle cx="50" cy="33" r="6" fill="#f6c90e"/>
+</svg>
+
+</svg>
