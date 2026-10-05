@@ -13,12 +13,13 @@
 
 | ファイル | 場所 | 推奨比率 |
 |---|---|---|
-| fv-main | FV メイン写真 | 4:3 |
+| fv-main.jpg | FV メイン写真（差し替え済み） | 4:3 |
 | reason-01〜04 | 選ばれる理由 | 16:10 |
 | service-01〜05 | サービス | 3:2 |
 | works-0X-before / after | 引越し事例 | 4:3 |
 | about-01 / about-02 | マツイについて | 4:3 / 1:1 |
-| cat.svg / logo-mark.svg / truck.svg / map.svg | キャラクター・ロゴ・トラック・地図（仮イラスト） | — |
+| logo.png | FV・CTAのキャラクター（ロゴ画像・差し替え済み） | — |
+| cat.svg（未使用） / logo-mark.svg / truck.svg / map.svg | キャラクター・ロゴ・トラック・地図（仮イラスト） | — |
 
 ## 仮の値（要差し替え）
 - 電話番号 `tel:0000000000` / `000-0000-0000`
