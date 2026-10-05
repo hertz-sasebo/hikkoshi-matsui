@@ -240,7 +240,7 @@ svg { fill: currentColor; }
   padding-inline: var(--gutter);
 }
 .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.logo__mark { width: 48px; height: 48px; }
+.logo__mark { width: auto; height: 60px; }
 .logo__text {
   font-family: var(--font-round);
   font-weight: 900;
@@ -315,7 +315,7 @@ svg { fill: currentColor; }
 @media (max-width: 767px) {
   .header__cta { display: none; }
   .menu-btn { margin-left: auto; }
-  .logo__mark { width: 40px; height: 40px; }
+  .logo__mark { height: 46px; }
   .logo__text { font-size: 22px; }
   .logo__text small { font-size: 12px; }
   .gnav__list { grid-template-columns: 1fr; }
