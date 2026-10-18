@@ -1,0 +1,196 @@
+/* ==========================================================
+   motion.css … 動き（UI/UX）だけをまとめたファイル
+   - 既存の style.css は変更していません。外せば元の見た目に戻ります
+   - JSが動いたときだけ（html.js-motion）初期状態を隠すので、JSが無効でも内容は表示されます
+   - 「動きを減らす」設定の端末では、すべての動きを止めます
+   ========================================================== */
+
+/* ---------- スクロール進捗バー（上部を走るトラック） ---------- */
+.progress {
+  position: fixed; left: 0; right: 0; top: 0; z-index: 120;
+  height: 3px; pointer-events: none;
+}
+.progress__bar {
+  height: 100%; width: 100%;
+  background: linear-gradient(90deg, var(--yellow), #ffb300);
+  transform-origin: left; transform: scaleX(0);
+}
+.progress__truck {
+  position: absolute; top: 3px; left: 0;
+  width: 26px; height: 26px; color: var(--navy);
+  transform: translateX(-30px);
+  filter: drop-shadow(0 2px 3px rgba(20, 48, 94, .2));
+  transition: opacity .3s;
+}
+.progress__truck svg { width: 100%; height: 100%; animation: truck-bump .5s ease-in-out infinite alternate; animation-play-state: paused; }
+.progress.is-moving .progress__truck svg { animation-play-state: running; }
+.progress.is-top .progress__truck { opacity: 0; }
+@keyframes truck-bump { from { translate: 0 0; } to { translate: 0 -1.5px; } }
+
+/* ---------- FV：開いたときの演出 ---------- */
+.js-motion .fv__title .marker {
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size .9s cubic-bezier(.65, 0, .35, 1);
+}
+.js-motion .fv.is-in .fv__title .marker { background-size: 100% 100%; }
+.js-motion .fv.is-in .fv__title .marker:nth-of-type(2) { transition-delay: .45s; }
+
+.js-motion .fv__title,
+.js-motion .fv__lead,
+.js-motion .fv__actions .btn-group {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.22, .7, .2, 1);
+}
+.js-motion .fv.is-in .fv__title { opacity: 1; transform: none; }
+.js-motion .fv.is-in .fv__lead { opacity: 1; transform: none; transition-delay: .9s; }
+.js-motion .fv.is-in .fv__actions .btn-group { opacity: 1; transform: none; transition-delay: 1.5s; }
+
+.js-motion .fv__photo { clip-path: inset(0 0 0 100% round 0); transition: clip-path 1.2s cubic-bezier(.65, 0, .35, 1) .2s; }
+.js-motion .fv.is-in .fv__photo { clip-path: inset(0 0 0 0 round 0); }
+.js-motion .fv__photo img { scale: 1.12; transition: scale 2.4s cubic-bezier(.22, .7, .2, 1) .2s; }
+.js-motion .fv.is-in .fv__photo img { scale: 1; }
+
+/* キャラクター：ぴょこっと登場 → ふわふわ */
+.js-motion .fv__cat { opacity: 0; transform: translateY(40px) scale(.7); }
+.js-motion .fv.is-in .fv__cat { animation: pop-in .7s cubic-bezier(.34, 1.56, .64, 1) 1.1s forwards, float 3.2s ease-in-out 1.9s infinite; }
+@keyframes pop-in { to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* 吹き出し */
+.js-motion .fv__balloon { opacity: 0; scale: .6; }
+.js-motion .fv.is-in .fv__balloon { animation: balloon .6s cubic-bezier(.34, 1.56, .64, 1) 1.6s forwards; }
+@keyframes balloon { to { opacity: 1; scale: 1; } }
+
+/* 見積もり無料などの丸：順番にポン */
+.js-motion .fv__points li { opacity: 0; scale: .4; }
+.js-motion .fv.is-in .fv__points li { animation: balloon .55s cubic-bezier(.34, 1.56, .64, 1) forwards; }
+.js-motion .fv.is-in .fv__points li:nth-child(1) { animation-delay: 1.15s; }
+.js-motion .fv.is-in .fv__points li:nth-child(2) { animation-delay: 1.3s; }
+.js-motion .fv.is-in .fv__points li:nth-child(3) { animation-delay: 1.45s; }
+
+/* ---------- ボタン：LINEボタンに光が走る／押した感触 ---------- */
+.btn--line { position: relative; overflow: hidden; isolation: isolate; }
+.btn--line::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; z-index: -1;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+  transform: skewX(-20deg);
+  animation: shine 4.5s ease-in-out 2.5s infinite;
+}
+@keyframes shine { 0% { left: -60%; } 22%, 100% { left: 130%; } }
+.btn { transition: transform .15s ease, box-shadow .15s ease, filter .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .15) !important; }
+
+/* ---------- スクロールで現れる ---------- */
+.js-motion .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.22, .7, .2, 1); transition-delay: var(--d, 0s); }
+.js-motion .rv.is-in { opacity: 1; transform: none; }
+
+/* 見出しの英字：字間が広がりながら現れる */
+.js-motion .sec-head__en { opacity: 0; letter-spacing: .6em; transition: opacity .8s ease, letter-spacing 1.1s cubic-bezier(.22, .7, .2, 1); }
+.js-motion .sec-head.is-in .sec-head__en { opacity: 1; letter-spacing: .14em; }
+
+/* ---------- カード：ホバーで持ち上がる ---------- */
+.card { transition: transform .35s cubic-bezier(.22, .7, .2, 1), box-shadow .35s; }
+.card__img { overflow: hidden; }
+.card__img img { transition: scale .6s cubic-bezier(.22, .7, .2, 1); }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(20, 48, 94, .14); }
+  .card:hover .card__img img { scale: 1.06; }
+  .card:hover .card__icon { animation: wiggle .5s ease; }
+}
+@keyframes wiggle { 0%, 100% { rotate: 0deg; } 30% { rotate: -10deg; } 60% { rotate: 8deg; } }
+
+/* ---------- 引越しの流れ：1→5へ順番に進む ---------- */
+.flow-wrap { position: relative; }
+.flow-track {
+  position: absolute; left: 0; right: 0; top: -38px; height: 30px; pointer-events: none;
+}
+.flow-track::before {
+  content: ""; position: absolute; left: 4%; right: 4%; top: 50%;
+  border-top: 2px dashed rgba(20, 48, 94, .25);
+}
+.flow-track__truck {
+  position: absolute; top: 0; left: 4%; width: 30px; height: 30px; color: var(--navy);
+  transform: translateX(-50%);
+  transition: left 2.6s cubic-bezier(.45, 0, .2, 1);
+}
+.flow-track__truck svg { width: 100%; height: 100%; animation: truck-bump .35s ease-in-out infinite alternate; }
+.flow.is-in ~ .flow-track .flow-track__truck,
+.flow-wrap.is-in .flow-track__truck { left: 96%; }
+
+.js-motion .flow__item { opacity: 0; transform: translateY(24px) scale(.96); transition: opacity .6s ease, transform .6s cubic-bezier(.34, 1.4, .64, 1); }
+.js-motion .flow-wrap.is-in .flow__item { opacity: 1; transform: none; }
+.js-motion .flow-wrap.is-in .flow__item:nth-child(2) { transition-delay: .5s; }
+.js-motion .flow-wrap.is-in .flow__item:nth-child(3) { transition-delay: 1s; }
+.js-motion .flow-wrap.is-in .flow__item:nth-child(4) { transition-delay: 1.5s; }
+.js-motion .flow-wrap.is-in .flow__item:nth-child(5) { transition-delay: 2s; }
+.flow__num { transition: background .4s, color .4s; }
+.flow-wrap.is-in .flow__item .flow__num { animation: num-pulse .7s ease both; }
+.flow-wrap.is-in .flow__item:nth-child(2) .flow__num { animation-delay: .5s; }
+.flow-wrap.is-in .flow__item:nth-child(3) .flow__num { animation-delay: 1s; }
+.flow-wrap.is-in .flow__item:nth-child(4) .flow__num { animation-delay: 1.5s; }
+.flow-wrap.is-in .flow__item:nth-child(5) .flow__num { animation-delay: 2s; }
+@keyframes num-pulse { 0% { box-shadow: 0 0 0 0 rgba(246, 201, 14, .8); } 100% { box-shadow: 0 0 0 14px rgba(246, 201, 14, 0); } }
+@media (max-width: 1199px) { .flow-track { display: none; } }
+
+/* ---------- 料金：数字のカウントアップ中は幅がぶれないように ---------- */
+.count { font-variant-numeric: tabular-nums; }
+
+/* ---------- 事例：Before→After の矢印が流れる ---------- */
+.ba__arrow { animation: nudge 1.6s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { translate: 0 0; } 50% { translate: 4px 0; } }
+@media (hover: hover) {
+  .works .ba__fig img { transition: scale .5s ease; }
+  .works:hover .ba__fig img { scale: 1.05; }
+}
+
+/* ---------- お客様の声：星が順番に灯る ---------- */
+.stars .star { display: inline-block; }
+.js-motion .stars .star { opacity: .2; scale: .6; transition: opacity .3s, scale .4s cubic-bezier(.34, 1.8, .64, 1); }
+.js-motion .stars.is-in .star { opacity: 1; scale: 1; }
+.js-motion .stars.is-in .star:nth-child(2) { transition-delay: .12s; }
+.js-motion .stars.is-in .star:nth-child(3) { transition-delay: .24s; }
+.js-motion .stars.is-in .star:nth-child(4) { transition-delay: .36s; }
+.js-motion .stars.is-in .star:nth-child(5) { transition-delay: .48s; }
+
+/* ---------- よくある質問：なめらかに開く ---------- */
+.faq__item[open] > p { animation: faq-open .45s cubic-bezier(.22, .7, .2, 1); }
+@keyframes faq-open { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- 対応エリア：タグが順番に ---------- */
+.js-motion .area__tags li { opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .5s cubic-bezier(.34, 1.56, .64, 1); }
+.js-motion .area__tags.is-in li { opacity: 1; transform: none; }
+.js-motion .area__tags.is-in li:nth-child(2) { transition-delay: .1s; }
+.js-motion .area__tags.is-in li:nth-child(3) { transition-delay: .2s; }
+.js-motion .area__tags.is-in li:nth-child(4) { transition-delay: .3s; }
+.js-motion .area__tags.is-in li:nth-child(5) { transition-delay: .4s; }
+
+/* ---------- CTA：トラックが走ってくる／キャラが手を振る ---------- */
+.js-motion .cta__truck { opacity: 0; transform: translateX(-120%); transition: transform 1.6s cubic-bezier(.22, .9, .3, 1), opacity .4s; }
+.js-motion .cta.is-in .cta__truck { opacity: 1; transform: none; }
+.cta.is-in .cta__truck { animation: truck-stop .5s ease 1.5s; }
+@keyframes truck-stop { 0%, 100% { rotate: 0deg; } 40% { rotate: -2deg; } 70% { rotate: 1deg; } }
+.cta.is-in .cta__cat { animation: wave 2.4s ease-in-out .8s infinite; transform-origin: 50% 90%; }
+@keyframes wave { 0%, 60%, 100% { rotate: 0deg; } 10% { rotate: -8deg; } 20% { rotate: 6deg; } 30% { rotate: -5deg; } 40% { rotate: 3deg; } }
+
+/* ---------- スマホ固定ボタン：下から出てくる ---------- */
+@media (max-width: 767px) {
+  .js-motion .sp-cta { transform: translateY(110%); transition: transform .45s cubic-bezier(.22, .7, .2, 1); }
+  .js-motion .sp-cta.is-show { transform: none; }
+  .progress__truck { width: 22px; height: 22px; }
+}
+
+/* ---------- 動きを減らす設定 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js-motion .rv, .js-motion .fv__title, .js-motion .fv__lead, .js-motion .fv__actions .btn-group,
+  .js-motion .fv__cat, .js-motion .fv__balloon, .js-motion .fv__points li, .js-motion .flow__item,
+  .js-motion .area__tags li, .js-motion .cta__truck, .js-motion .stars .star, .js-motion .sec-head__en {
+    opacity: 1 !important; transform: none !important; scale: 1 !important; clip-path: none !important;
+  }
+  .js-motion .fv__photo { clip-path: none !important; }
+  .js-motion .fv__title .marker { background-size: 100% 100% !important; }
+  .js-motion .sp-cta { transform: none !important; }
+  .progress__truck { display: none; }
+}
