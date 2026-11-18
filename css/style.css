@@ -855,6 +855,14 @@ svg { fill: currentColor; }
   margin-bottom: 24px;
 }
 .cta .btn-group .btn { flex-basis: 220px; }
+.cta__truck {
+  justify-self: center;
+  width: min(100%, 280px);
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: var(--white);
+  box-shadow: 0 6px 18px rgba(23, 42, 84, .18);
+}
 
 @media (max-width: 1199px) {
   .cta__inner {
@@ -863,7 +871,7 @@ svg { fill: currentColor; }
   }
   .cta__cat { grid-area: cat; }
   .cta__body { grid-area: body; }
-  .cta__truck { grid-area: truck; width: min(420px, 80%); justify-self: end; margin-top: -16px; }
+  .cta__truck { grid-area: truck; width: 260px; justify-self: center; }
 }
 @media (max-width: 767px) {
   .cta { padding-block: 40px 32px; }
@@ -872,7 +880,7 @@ svg { fill: currentColor; }
   .cta__ttl { grid-area: ttl; margin: 0; font-size: 18px; }
   .cta .btn-group { grid-area: body; }
   .cta .btn-group .btn { flex-basis: 100%; }
-  .cta__truck { width: 85%; margin-top: 0; justify-self: center; }
+  .cta__truck { width: 200px; }
 }
 
 /* ---------- 16. FOOTER ---------- */
