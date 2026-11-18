@@ -626,10 +626,8 @@ svg { fill: currentColor; }
   background: var(--yellow);
   font-size: 15px;
 }
-.flow__icon { display: flex; justify-content: center; align-items: center; gap: 4px; height: 84px; margin-block: 12px; color: var(--navy); }
-.flow__icon svg { width: 68px; height: 68px; }
-.flow__icon--pair svg { width: 48px; height: 48px; color: #22a06b; }
-.flow__icon--pair svg.is-line { color: var(--green); }
+.flow__icon { display: flex; justify-content: center; align-items: center; align-self: stretch; height: 120px; margin-block: 12px; }
+.flow__icon img { width: 100%; height: 100%; object-fit: contain; }
 .flow__item p { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
 
 @media (max-width: 1199px) {
@@ -641,7 +639,7 @@ svg { fill: currentColor; }
   .flow { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .flow__item {
     display: grid;
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 104px 1fr;
     grid-template-areas: "icon ttl" "icon txt";
     column-gap: 14px;
     align-items: center;
@@ -658,9 +656,7 @@ svg { fill: currentColor; }
   }
   .flow__ttl { grid-area: ttl; min-height: 0; font-size: 15px; }
   .flow__num { width: 34px; height: 34px; font-size: 13px; }
-  .flow__icon { grid-area: icon; height: auto; margin: 0; }
-  .flow__icon svg { width: 56px; height: 56px; }
-  .flow__icon--pair svg { width: 30px; height: 30px; }
+  .flow__icon { grid-area: icon; height: 88px; margin: 0; }
   .flow__item p { grid-area: txt; margin-top: 4px; }
   .flow__item p br { display: none; }
 }
