@@ -840,7 +840,7 @@ svg { fill: currentColor; }
 .cta__inner {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, .45fr) minmax(0, 1.4fr) minmax(0, .9fr);
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.5fr) minmax(0, .9fr);
   gap: 32px;
   align-items: center;
   max-width: calc(var(--container) + var(--gutter) * 2);
@@ -849,38 +849,33 @@ svg { fill: currentColor; }
 }
 .cta__ttl {
   font-family: var(--font-hand);
-  font-size: clamp(22px, 2.3vw, 32px);
+  font-size: clamp(22px, 2.1vw, 28px);
   line-height: 1.6;
   color: var(--navy);
   margin-bottom: 24px;
 }
 .cta .btn-group .btn { flex-basis: 220px; }
-.cta__truck {
-  justify-self: center;
-  width: min(100%, 280px);
-  aspect-ratio: 1;
-  border-radius: 24px;
-  background: var(--white);
-  box-shadow: 0 6px 18px rgba(23, 42, 84, .18);
-}
+.cta__cat { width: 100%; }
+.cta__truck { width: 100%; justify-self: end; }
 
 @media (max-width: 1199px) {
   .cta__inner {
-    grid-template-columns: 140px minmax(0, 1fr);
+    grid-template-columns: 240px minmax(0, 1fr);
     grid-template-areas: "cat body" "truck truck";
   }
   .cta__cat { grid-area: cat; }
   .cta__body { grid-area: body; }
-  .cta__truck { grid-area: truck; width: 260px; justify-self: center; }
+  .cta__truck { grid-area: truck; width: min(400px, 60%); justify-self: end; margin-top: -24px; }
 }
 @media (max-width: 767px) {
   .cta { padding-block: 40px 32px; }
-  .cta__inner { grid-template-columns: 84px minmax(0, 1fr); grid-template-areas: "cat ttl" "body body" "truck truck"; gap: 16px 12px; }
+  .cta__inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "ttl" "body" "truck"; gap: 16px; }
+  .cta__cat { display: none; }
   .cta__body { display: contents; }
-  .cta__ttl { grid-area: ttl; margin: 0; font-size: 18px; }
+  .cta__ttl { grid-area: ttl; margin: 0; font-size: 18px; text-align: center; }
   .cta .btn-group { grid-area: body; }
   .cta .btn-group .btn { flex-basis: 100%; }
-  .cta__truck { width: 200px; }
+  .cta__truck { width: 92%; justify-self: center; margin-top: -8px; }
 }
 
 /* ---------- 16. FOOTER ---------- */
